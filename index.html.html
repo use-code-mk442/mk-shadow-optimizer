@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Shadow Optimizer &amp; PS5 Overlay — الموقع الرسمي | مجد MK442</title>
+  <meta name="description" content="تطبيق MK Shadow Optimizer & PS5 Overlay من تطوير مجد (MK442): مخفف عمليات المعالج الذكي مع أوفرلي شفاف بأسلوب PlayStation لحفظ آخر 15ث إلى 10د بجودة عالية وصوت اللعبة والديسكورد والمايك بدون تعليق." />
+
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              950: '#060914',
+              900: '#0b1024',
+              850: '#0f152e',
+              800: '#151d3d',
+            },
+            neon: {
+              purple: '#a855f7',
+              violet: '#7c3aed',
+              cyan: '#38bdf8',
+              blue: '#2563eb',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Custom Visual Depth, Glassmorphism & Smooth Animations -->
+  <style>
+    html, body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #060914;
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+
+    /* Ambient glowing background mesh */
+    .bg-grid-pattern {
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(124, 58, 237, 0.22), transparent 38%),
+        radial-gradient(circle at 82% 18%, rgba(37, 99, 235, 0.18), transparent 40%),
+        radial-gradient(circle at 50% 65%, rgba(168, 85, 247, 0.10), transparent 50%),
+        linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 42px 42px, 42px 42px;
+    }
+
+    /* Glassmorphism card styling */
+    .glass-card {
+      background: linear-gradient(145deg, rgba(17, 24, 52, 0.78), rgba(10, 14, 32, 0.88));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(168, 85, 247, 0.22);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .glass-card:hover {
+      border-color: rgba(168, 85, 247, 0.55);
+      box-shadow: 0 18px 50px rgba(124, 58, 237, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    /* PS5 Overlay Demo Glass Panel */
+    .ps5-overlay-shell {
+      background: linear-gradient(135deg, rgba(10, 14, 32, 0.92), rgba(22, 16, 56, 0.90), rgba(11, 20, 48, 0.92));
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1.5px solid rgba(168, 85, 247, 0.55);
+      box-shadow:
+        0 0 45px rgba(124, 58, 237, 0.32),
+        0 20px 60px rgba(0, 0, 0, 0.65),
+        inset 0 1px 1px rgba(255, 255, 255, 0.12);
+    }
+
+    /* Primary Neon Gradient Button */
+    .btn-neon-primary {
+      background: linear-gradient(135deg, #7c3aed 0%, #9333ea 45%, #2563eb 100%);
+      box-shadow: 0 0 24px rgba(124, 58, 237, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-neon-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(168, 85, 247, 0.72), 0 10px 25px rgba(37, 99, 235, 0.35);
+      filter: brightness(1.08);
+    }
+
+    .btn-neon-primary:active {
+      transform: translateY(0);
+    }
+
+    /* Creator Code Pill Glow */
+    .code-pill-glow {
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.28), rgba(56, 189, 248, 0.22));
+      border: 1px solid rgba(192, 132, 252, 0.55);
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.3);
+      transition: all 0.25s ease;
+    }
+
+    .code-pill-glow:hover {
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.45), rgba(56, 189, 248, 0.35));
+      border-color: #c084fc;
+      box-shadow: 0 0 26px rgba(168, 85, 247, 0.55);
+      transform: translateY(-1px);
+    }
+
+    /* Subtle floating logo animation */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-float {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+
+    /* PS5 Toast Entrance Animation */
+    @keyframes toastSlideIn {
+      0% { opacity: 0; transform: translateX(-36px) scale(0.96); }
+      100% { opacity: 1; transform: translateX(0) scale(1); }
+    }
+    @keyframes toastSlideOut {
+      0% { opacity: 1; transform: translateX(0) scale(1); }
+      100% { opacity: 0; transform: translateX(-36px) scale(0.95); }
+    }
+    .toast-enter {
+      animation: toastSlideIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .toast-exit {
+      animation: toastSlideOut 0.24s ease-in forwards;
+    }
+
+    /* Screenshot camera flash effect inside demo */
+    @keyframes flashShutter {
+      0% { opacity: 0.7; }
+      100% { opacity: 0; }
+    }
+    .shutter-flash {
+      animation: flashShutter 0.38s ease-out forwards;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 9px; }
+    ::-webkit-scrollbar-track { background: #060914; }
+    ::-webkit-scrollbar-thumb { background: #263159; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+  </style>
+</head>
+<body class="bg-grid-pattern min-h-screen text-slate-100 antialiased selection:bg-purple-600 selection:text-white">
+
+  <!-- Reusable App Icon SVG Definition (Exact recreation of MK Shadow Optimizer custom icon) -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden" aria-hidden="true">
+    <defs>
+      <linearGradient id="mkBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#070b1c" />
+        <stop offset="55%" stop-color="#13163b" />
+        <stop offset="100%" stop-color="#2b1257" />
+      </linearGradient>
+      <linearGradient id="mkOuterBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" />
+        <stop offset="50%" stop-color="#a855f7" />
+        <stop offset="100%" stop-color="#ec4899" />
+      </linearGradient>
+      <linearGradient id="mkInnerRing" x1="100%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#c084fc" />
+        <stop offset="100%" stop-color="#38bdf8" />
+      </linearGradient>
+      <linearGradient id="mkBoltGrad" x1="20%" y1="0%" x2="80%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff" />
+        <stop offset="60%" stop-color="#e0f2fe" />
+        <stop offset="100%" stop-color="#38bdf8" />
+      </linearGradient>
+      <radialGradient id="mkRecDot" cx="40%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#fda4af" />
+        <stop offset="50%" stop-color="#f43f5e" />
+        <stop offset="100%" stop-color="#be123c" />
+      </radialGradient>
+      <filter id="mkGlow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="3.5" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="mkDotGlow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="3" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+
+      <symbol id="mk-app-logo" viewBox="0 0 128 128">
+        <!-- Base Rounded Dark Navy-to-Violet Square -->
+        <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#mkBgGrad)" stroke="url(#mkOuterBorder)" stroke-width="3.5" />
+        <!-- Secondary Inner Cyan/Purple Border -->
+        <rect x="11" y="11" width="106" height="106" rx="22" fill="none" stroke="url(#mkInnerRing)" stroke-width="1.5" opacity="0.65" />
+        <!-- Glowing Inner Ring -->
+        <circle cx="64" cy="64" r="35" fill="rgba(124,58,237,0.12)" stroke="url(#mkInnerRing)" stroke-width="3.2" filter="url(#mkGlow)" opacity="0.95" />
+        <!-- Center White/Cyan Lightning Bolt -->
+        <path d="M70 32 L45 69 H62 L56 96 L84 58 H66 L70 32 Z" fill="url(#mkBoltGrad)" filter="url(#mkGlow)" />
+        <!-- Glowing Pink/Red Record Dot in Top-Right Corner -->
+        <circle cx="98" cy="29" r="9" fill="url(#mkRecDot)" filter="url(#mkDotGlow)" />
+        <circle cx="95.5" cy="26.5" r="2.5" fill="#ffffff" opacity="0.75" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Floating PS5-Style Toast Container (Top-Left for RTL) -->
+  <div id="toast-container" class="fixed top-5 left-5 z-[100] flex flex-col gap-3 max-w-sm w-[calc(100vw-2.5rem)] pointer-events-none"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 1. TOP RIGHTS & CREATOR BAR (Above Navbar)                            -->
+  <!-- ===================================================================== -->
+  <div class="relative z-40 bg-[#080c1c]/95 border-b border-purple-500/25 text-xs sm:text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col lg:flex-row items-center justify-between gap-2.5">
+      <!-- Right: Ownership & License Modal Trigger -->
+      <div class="flex flex-wrap items-center justify-center gap-2 text-slate-300">
+        <span class="font-semibold text-slate-200">© 2026 جميع الحقوق والتراخيص مملوكة لـ <span class="text-purple-300 font-bold">مجد (Majd / MK442)</span></span>
+        <button type="button" onclick="openLicenseModal()" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-purple-600/30 border border-slate-700 hover:border-purple-400/60 text-cyan-300 font-bold transition cursor-pointer">
+          <span>📜</span>
+          <span>التراخيص والملكية</span>
+        </button>
+      </div>
+
+      <!-- Center: Glowing Shop Code Pill -->
+      <button type="button" onclick="copyCreatorCode()" class="code-pill-glow inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-white font-bold cursor-pointer">
+        <span>💜</span>
+        <span>استخدم كود <span class="text-cyan-300 font-black tracking-wider px-1">MK442</span> في الشوب — اضغط للنسخ</span>
+      </button>
+
+      <!-- Left: Quick Social Links -->
+      <div class="flex items-center gap-2">
+        <a href="https://www.youtube.com/@majd442" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-500/15 hover:bg-red-500/30 border border-red-500/30 text-red-200 font-bold transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+          <span>يوتيوب</span>
+        </a>
+        <a href="https://www.tiktok.com/@mk_shadow6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/30 border border-cyan-400/30 text-cyan-200 font-bold transition">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          <span>تيك توك</span>
+        </a>
+        <a href="https://discord.gg/xD7CrSVby4" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/35 border border-indigo-400/35 text-indigo-200 font-bold transition">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span>ديسكورد</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. STICKY NAVBAR                                                      -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-50 bg-[#060914]/80 backdrop-blur-xl border-b border-slate-800/80">
+    <nav class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <!-- Brand Logo -->
+      <a href="#top" class="flex items-center gap-3 group">
+        <svg class="w-11 h-11 drop-shadow-[0_0_12px_rgba(168,85,247,0.6)] group-hover:scale-105 transition" aria-label="شعار MK Shadow Optimizer">
+          <use href="#mk-app-logo"></use>
+        </svg>
+        <div class="leading-tight">
+          <div class="font-black text-base sm:text-lg text-white tracking-tight">MK Shadow Optimizer</div>
+          <div class="text-[11px] font-bold text-purple-300/90">PS5 Overlay &amp; CPU Booster</div>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-1 lg:gap-2 text-sm font-bold text-slate-300">
+        <a href="#demo" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-white transition">جرّب الأوفرلي</a>
+        <a href="#features" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-white transition">المميزات</a>
+        <a href="#compare" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-white transition">المقارنة</a>
+        <a href="#download" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-white transition">التحميل</a>
+        <a href="#license" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-white transition">التراخيص</a>
+      </div>
+
+      <!-- Primary CTA + Mobile Menu Button -->
+      <div class="flex items-center gap-2">
+        <a href="#download" class="btn-neon-primary inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-sm font-extrabold text-white">
+          <span>⬇️</span>
+          <span>تحميل مجاني</span>
+        </a>
+        <button type="button" id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-200 hover:border-purple-500 transition" aria-label="القائمة">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-[#0b1024]/95 px-4 py-3 space-y-1.5 text-sm font-bold">
+      <a href="#demo" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-purple-500/15 text-slate-200">🎮 جرّب الأوفرلي المباشر</a>
+      <a href="#features" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-purple-500/15 text-slate-200">✨ المميزات الرئيسية</a>
+      <a href="#compare" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-purple-500/15 text-slate-200">⚡ المقارنة</a>
+      <a href="#download" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-purple-500/15 text-slate-200">⬇️ التحميل والتثبيت</a>
+      <a href="#license" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl hover:bg-purple-500/15 text-slate-200">📜 التراخيص والحقوق</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ===================================================================== -->
+    <!-- 3. HERO SECTION                                                       -->
+    <!-- ===================================================================== -->
+    <section class="relative pt-14 pb-20 sm:pt-20 sm:pb-28 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
+        <!-- Large Glowing App Icon -->
+        <div class="flex justify-center mb-7">
+          <div class="relative animate-float">
+            <div class="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-purple-600 via-fuchsia-500 to-cyan-400 blur-2xl opacity-45 scale-110"></div>
+            <svg class="relative w-28 h-28 sm:w-32 sm:h-32 drop-shadow-[0_12px_30px_rgba(124,58,237,0.55)]" aria-label="أيقونة MK Shadow Optimizer">
+              <use href="#mk-app-logo"></use>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Version Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/15 border border-purple-400/35 text-purple-200 text-xs sm:text-sm font-bold mb-6 shadow-[0_0_24px_rgba(168,85,247,0.2)]">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>⚡ الإصدار الرسمي v1.1 Final • مجاني 100% لنظام Windows 10 &amp; 11</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.22] tracking-tight max-w-4xl mx-auto mb-6">
+          خفّف ضغط المعالج.. وصوّر لقطاتك بأسلوب
+          <span class="bg-gradient-to-l from-cyan-400 via-purple-400 to-fuchsia-400 bg-clip-text text-transparent">PlayStation</span>
+          بدون أي تعليق!
+        </h1>
+
+        <!-- Full Arabic Product Description -->
+        <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto mb-10 font-medium">
+          تطبيق <strong class="text-white">MK Shadow Optimizer &amp; PS5 Overlay</strong> هو أداتك المتكاملة للاعبين على ويندوز:
+          يجمع بين <span class="text-cyan-300 font-bold">مخفف عمليات المعالج الذكي</span> (مع زر حماية مكالمة الديسكورد)
+          و<span class="text-purple-300 font-bold">أوفرلي شفاف بأسلوب PS5</span> يفتح فوق أي لعبة بضغطة <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-600 text-cyan-300 text-xs font-bold">F8</kbd> أو <kbd class="px-2 py-0.5 rounded bg-slate-800 border border-slate-600 text-cyan-300 text-xs font-bold">Alt + Z</kbd>
+          لحفظ آخر <strong>15 ثانية حتى 10 دقائق</strong> بترميز كرت الشاشة <strong>DXGI + NVENC Zero-Copy</strong>، مع
+          <strong>3 قنوات صوت مستقلة</strong> (اللعبة + صوت خويك بالديسكورد / Sonar Chat + المايك مع دبل ×2)، وحفظ تلقائي للإعدادات وإقلاع صامت مع ويندوز.
+        </p>
+
+        <!-- Primary & Secondary CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+          <a href="#download" class="btn-neon-primary w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl text-base sm:text-lg font-extrabold text-white">
+            <span>⬇️</span>
+            <span>تحميل التطبيق مجاناً (v1.1 Final)</span>
+          </a>
+          <button type="button" onclick="copyCreatorCode()" class="code-pill-glow w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl text-base font-extrabold text-white cursor-pointer">
+            <span>💜</span>
+            <span>نسخ كود الشوب: <span class="text-cyan-300 font-black">MK442</span></span>
+          </button>
+        </div>
+
+        <!-- 4 Key Stat Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+          <div class="glass-card rounded-2xl p-5 text-center">
+            <div class="text-2xl sm:text-3xl font-black text-emerald-400 mb-1">&lt; 0.5%</div>
+            <div class="text-xs sm:text-sm font-bold text-slate-200">استهلاك المعالج بالخلفية</div>
+            <div class="text-[11px] text-slate-400 mt-1">و 0% عند الإخفاء بجانب الساعة</div>
+          </div>
+          <div class="glass-card rounded-2xl p-5 text-center">
+            <div class="text-2xl sm:text-3xl font-black text-purple-400 mb-1">15ث – 10د</div>
+            <div class="text-xs sm:text-sm font-bold text-slate-200">مخزن دائري (Replay)</div>
+            <div class="text-[11px] text-slate-400 mt-1">حفظ فوري بأسلوب PS5 بدون إعادة ترميز</div>
+          </div>
+          <div class="glass-card rounded-2xl p-5 text-center">
+            <div class="text-2xl sm:text-3xl font-black text-cyan-400 mb-1">3 قنوات + ×2</div>
+            <div class="text-xs sm:text-sm font-bold text-slate-200">صوت اللعبة + الديسكورد + المايك</div>
+            <div class="text-[11px] text-slate-400 mt-1">دعم تلقائي لـ Sonar Chat + دبل الصوت</div>
+          </div>
+          <div class="glass-card rounded-2xl p-5 text-center">
+            <div class="text-2xl sm:text-3xl font-black text-fuchsia-400 mb-1">60 / 120 FPS</div>
+            <div class="text-xs sm:text-sm font-bold text-slate-200">DXGI + NVENC Zero-Copy</div>
+            <div class="text-[11px] text-slate-400 mt-1">صفر تعليق للماوس أو الفريمات</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. INTERACTIVE LIVE PS5 OVERLAY DEMO                                  -->
+    <!-- ===================================================================== -->
+    <section id="demo" class="py-16 sm:py-24 relative">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-extrabold mb-3">🎮 تجربة تفاعلية مباشرة</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white mb-3">جرّب أوفرلي PlayStation الآن داخل الصفحة!</h2>
+          <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+            اضغط على أي زر بالأسفل (حفظ لقطة، لقطة شاشة، بدء التسجيل، كتم صوت الديسكورد، أو تخفيف المعالج) وشاهد الإشعارات العائمة وتحديث الحالة لحظياً كما في التطبيق الحقيقي.
+          </p>
+        </div>
+
+        <!-- Simulated Game Backdrop Container -->
+        <div class="relative rounded-3xl p-4 sm:p-8 border border-purple-500/30 bg-gradient-to-b from-[#0b1128] via-[#101336] to-[#080c1c] shadow-[0_25px_70px_rgba(0,0,0,0.65)] overflow-hidden">
+          <!-- Flash Overlay for Screenshot -->
+          <div id="demo-flash" class="pointer-events-none absolute inset-0 bg-white opacity-0 z-30 rounded-3xl"></div>
+
+          <!-- Subtle Fake Game HUD Header -->
+          <div class="flex items-center justify-between text-[11px] sm:text-xs text-slate-400 mb-5 px-2">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="font-bold text-slate-300">محاكاة شاشة اللعب • اختصار الفتح: F8 أو Alt + Z</span>
+            </div>
+            <div class="font-mono text-emerald-300 font-bold">FPS: <span id="demo-fps">240</span></div>
+          </div>
+
+          <!-- Actual PS5 Glassmorphic Overlay Shell -->
+          <div class="ps5-overlay-shell rounded-3xl p-4 sm:p-6">
+            <!-- Overlay Top Status Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b border-purple-400/20">
+              <div class="flex items-center gap-2.5">
+                <svg class="w-8 h-8">
+                  <use href="#mk-app-logo"></use>
+                </svg>
+                <div>
+                  <div class="font-black text-sm sm:text-base text-white">MK Shadow Overlay</div>
+                  <div id="demo-buffer-clock" class="text-[11px] font-bold text-cyan-300">المسجل: 04:15 / 10:00 • اللعبة + الديسكورد</div>
+                </div>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="demo-encoder-badge" class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-xs font-bold">
+                  ● NVENC Zero-Copy (DXGI)
+                </span>
+                <span id="demo-cpu-pill" class="px-3 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-cyan-300 text-xs font-bold">
+                  CPU: 14% • عمليات: 186
+                </span>
+                <button type="button" id="demo-replay-toggle" onclick="demoToggleBuffer()" class="px-3 py-1.5 rounded-xl bg-purple-600/30 hover:bg-purple-600/50 border border-purple-400/40 text-xs font-bold text-white transition cursor-pointer">
+                  ⏹ إيقاف المخزن
+                </button>
+              </div>
+            </div>
+
+            <!-- Replay Duration Pills Row (PS5 Style) -->
+            <div class="rounded-2xl bg-[#0a0f24]/80 border border-purple-500/25 p-3.5 sm:p-4 mb-4">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <div class="text-xs sm:text-sm font-extrabold text-purple-300">⏪ حفظ آخر لقطة لعب (Replay Buffer) — اختر المدة:</div>
+                <span class="text-[11px] text-slate-400 font-semibold">حفظ فوري MP4 خلال 0.4 ثانية</span>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                <button type="button" onclick="demoSaveClip('15 ثانية')" class="btn-neon-primary py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold text-white cursor-pointer">15 ثانية</button>
+                <button type="button" onclick="demoSaveClip('30 ثانية')" class="btn-neon-primary py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold text-white cursor-pointer">30 ثانية</button>
+                <button type="button" onclick="demoSaveClip('1 دقيقة')" class="btn-neon-primary py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold text-white cursor-pointer">1 دقيقة</button>
+                <button type="button" onclick="demoSaveClip('3 دقائق')" class="btn-neon-primary py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold text-white cursor-pointer">3 دقائق</button>
+                <button type="button" onclick="demoSaveClip('10 دقائق')" class="btn-neon-primary col-span-2 sm:col-span-1 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-extrabold text-white cursor-pointer">10 دقائق</button>
+              </div>
+            </div>
+
+            <!-- 3 Main Action Tiles: Screenshot | Manual Record + Discord Audio | CPU Boost + Discord Guard -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+              <!-- Tile 1: Screenshot -->
+              <button type="button" onclick="demoScreenshot()" class="group rounded-2xl bg-[#111936]/90 hover:bg-[#19244d] border border-slate-700/80 hover:border-cyan-400/70 p-4 text-center flex flex-col items-center justify-center gap-1.5 transition cursor-pointer">
+                <span class="text-2xl group-hover:scale-110 transition">📸</span>
+                <span class="font-extrabold text-white text-sm">لقطة شاشة فورية</span>
+                <span class="text-[11px] text-slate-400 font-semibold">حفظ PNG + نسخ تلقائي Ctrl+V</span>
+              </button>
+
+              <!-- Tile 2: Manual Recording + Discord Audio Toggle -->
+              <div class="flex flex-col gap-2">
+                <button type="button" id="demo-rec-btn" onclick="demoToggleRecording()" class="rounded-2xl bg-[#111936]/90 hover:bg-rose-950/60 border border-slate-700/80 hover:border-rose-400/70 p-3.5 text-center flex flex-col items-center justify-center gap-1 transition cursor-pointer">
+                  <span id="demo-rec-icon" class="text-xl">⏺</span>
+                  <span id="demo-rec-title" class="font-extrabold text-white text-sm">بدء تسجيل فيديو</span>
+                  <span id="demo-rec-sub" class="text-[11px] text-slate-400 font-semibold">60 FPS • اللعبة + الديسكورد</span>
+                </button>
+                <label class="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-purple-400/60 cursor-pointer select-none transition">
+                  <input id="demo-discord-audio" type="checkbox" checked onchange="demoToggleDiscordAudio()" class="w-4 h-4 accent-purple-500 rounded cursor-pointer" />
+                  <span class="text-xs font-bold text-slate-200">💬 تسجيل صوت الديسكورد</span>
+                </label>
+              </div>
+
+              <!-- Tile 3: CPU Boost + Discord Protection Toggle -->
+              <div class="flex flex-col gap-2">
+                <button type="button" onclick="demoCpuBoost()" class="rounded-2xl bg-[#111936]/90 hover:bg-emerald-950/50 border border-slate-700/80 hover:border-emerald-400/70 p-3.5 text-center flex flex-col items-center justify-center gap-1 transition cursor-pointer">
+                  <span class="text-xl">🚀</span>
+                  <span class="font-extrabold text-emerald-300 text-sm">تخفيف المعالج الآن</span>
+                  <span id="demo-boost-sub" class="text-[11px] text-slate-400 font-semibold">متاح إغلاق 24 عملية خلفية</span>
+                </button>
+                <label class="flex items-center justify-center gap-2 px-3 py-2 rounded-xl bg-slate-900/80 border border-slate-700/80 hover:border-cyan-400/60 cursor-pointer select-none transition">
+                  <input id="demo-protect-discord" type="checkbox" checked onchange="demoToggleProtectDiscord()" class="w-4 h-4 accent-cyan-400 rounded cursor-pointer" />
+                  <span class="text-xs font-bold text-slate-200">🛡️ لا تطفي الديسكورد</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Overlay Live Footer Toast Line -->
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+              <div id="demo-status-line" class="text-purple-200 font-bold">
+                ✨ اضغط على أي ميزة أعلاه لتجربة استجابة الأوفرلي الفورية!
+              </div>
+              <div class="flex items-center gap-2 text-[11px] text-slate-400">
+                <button type="button" onclick="copyCreatorCode()" class="px-2.5 py-1 rounded-lg bg-purple-500/20 hover:bg-purple-500/35 border border-purple-400/40 text-purple-200 font-bold transition cursor-pointer">
+                  💜 كود الشوب: MK442
+                </button>
+                <span>© مجد</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. 6 FEATURE CARDS GRID                                               -->
+    <!-- ===================================================================== -->
+    <section id="features" class="py-16 sm:py-24">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-14">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-purple-500/15 border border-purple-400/30 text-purple-300 text-xs font-extrabold mb-3">✨ مصمم للاعبين</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white mb-3">كل ما تحتاجه لتسجيل نظيف وأداء صاروخي</h2>
+          <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+            تطبيق أصلي مبني بلغة C# (.NET 8) خصيصاً لنظام ويندوز ليمنحك سلاسة فائقة بدون برامج متصفح ثقيلة تستهلك الرام.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Feature 1 -->
+          <div class="glass-card rounded-3xl p-6 hover:-translate-y-1.5">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-2xl mb-4">🎮</div>
+            <h3 class="text-lg font-extrabold text-white mb-2">أوفرلي شفاف بأسلوب PS5</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              قائمة زجاجية شفافة باللون الأزرق الداكن والبنفسجي المضيء مع أنيميشن ناعم تظهر فوق أي لعبة بالضغط على <strong class="text-cyan-300">F8</strong> أو <strong class="text-cyan-300">Alt + Z</strong> (وتتكيف تلقائياً إذا كان الاختصار محجوزاً).
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="glass-card rounded-3xl p-6 hover:-translate-y-1.5">
+            <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-2xl mb-4">⏪</div>
+            <h3 class="text-lg font-extrabold text-white mb-2">حفظ آخر 15ث حتى 10 دقائق</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              مخزن دائري ذكي بتقنية <strong class="text-white">DXGI + NVENC Zero-Copy</strong> (مع دعم AMD AMF و Intel QSV) يحفظ لقطاتك بدقة أصلية وبـ 30/60/120 FPS بدون تعليق للماوس أو سحب من الرام.
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="glass-card rounded-3xl p-6 hover:-translate-y-1.5">
+            <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/20 border border-fuchsia-400/40 flex items-center justify-center text-2xl mb-4">🎚️</div>
+            <h3 class="text-lg font-extrabold text-white mb-2">3 قنوات صوت مستقلة + دبل ×2</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              يسجل صوت اللعبة والويندوز، ويكتشف تلقائياً قناة صوت خويك بالديسكورد (<strong class="text-purple-300">SteelSeries Sonar - Chat</strong> / المكالمات) مع زر كتم فوري، والمايك اختياري مع سلايدر 0–300% و<strong class="text-cyan-300">دبل ×2</strong> بدون تشويش.
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="glass-card rounded-3xl p-6 hover:-translate-y-1.5">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-2xl mb-4">⚡</div>
+            <h3 class="text-lg font-extrabold text-white mb-2">مخفف عمليات المعالج الذكي</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              يعرض كل عملية بأيقونتها ومسارها الكامل مع مستشار ذكي ينصحك بما يُغلق وقت اللعب، وحماية كاملة لملفات ويندوز الحرجة، مع وضع <strong class="text-emerald-300">Eco Mode</strong> وإغلاق كل نسخ المتصفح بضغطة.
+            </p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="glass-card rounded-3xl p-6 hover:-translate-y-1.5">
+            <div class="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center text-2xl mb-4">🛡️</div>
+            <h3 class="text-lg font-extrabold text-white mb-2">حماية مكالمة الديسكورد</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              خيار <strong class="text-cyan-300">«لا تطفي الديسكورد»</strong> موجود مباشرة تحت زر التخفيف — يبقيك في المكالمة مع أخوياك ويخفف أولويته فقط، ولو شلت الصح يغلقه مع باقي التطبيقات فوراً.
+            </p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="glass-card rounded-3xl p-6 hover:-translate-y-1.5">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-2xl mb-4">🚀</div>
+            <h3 class="text-lg font-extrabold text-white mb-2">حفظ تلقائي + تشغيل مع ويندوز</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              كل إعداداتك (الفريمات، الدقة، الصوت، قائمة الاستثناء) تُحفظ تلقائياً في نسختين آمنتين، مع خيار <strong class="text-amber-300">Startup</strong> ليقلع التطبيق بصمت بجانب الساعة فور تشغيل الكمبيوتر.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 6. QUICK COMPARISON TABLE                                             -->
+    <!-- ===================================================================== -->
+    <section id="compare" class="py-16 sm:py-24">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <span class="inline-block px-3.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-extrabold mb-3">📊 لماذا MK Shadow Optimizer؟</span>
+          <h2 class="text-2xl sm:text-4xl font-black text-white mb-3">مقارنة سريعة مع برامج التصوير الثقيلة</h2>
+          <p class="text-slate-400 text-sm sm:text-base">ودّع البرامج التي تفتح 10 عمليات بالخلفية وتطلب تسجيل دخول وتأكل الرام.</p>
+        </div>
+
+        <div class="glass-card rounded-3xl overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-right border-collapse min-w-[540px]">
+              <thead>
+                <tr class="bg-[#121938]/90 border-b border-purple-500/30">
+                  <th class="py-4 px-5 text-sm font-extrabold text-slate-300">الميزة</th>
+                  <th class="py-4 px-5 text-sm font-black text-purple-300 bg-purple-600/15">⚡ MK Shadow Optimizer</th>
+                  <th class="py-4 px-5 text-sm font-bold text-slate-400">برامج التصوير الثقيلة (Medal / وغيرها)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800/80 text-sm">
+                <tr class="hover:bg-white/[0.02] transition">
+                  <td class="py-4 px-5 font-bold text-slate-200">استهلاك المعالج والرام بالخلفية</td>
+                  <td class="py-4 px-5 font-extrabold text-emerald-400 bg-purple-600/[0.06]">✅ أقل من 0.5% معالج (~40 MB رام)</td>
+                  <td class="py-4 px-5 text-rose-300/90">❌ 5% – 15% معالج و 500+ MB رام</td>
+                </tr>
+                <tr class="hover:bg-white/[0.02] transition">
+                  <td class="py-4 px-5 font-bold text-slate-200">حفظ آخر 15ث / 30ث / 1د / 3د / 10د</td>
+                  <td class="py-4 px-5 font-extrabold text-emerald-400 bg-purple-600/[0.06]">✅ اختيار المدة فورياً بأسلوب PS5</td>
+                  <td class="py-4 px-5 text-amber-300/90">⚠️ مدة ثابتة واحدة مسبقاً فقط</td>
+                </tr>
+                <tr class="hover:bg-white/[0.02] transition">
+                  <td class="py-4 px-5 font-bold text-slate-200">صوت خويك بالديسكورد (Sonar Chat) + زر كتم</td>
+                  <td class="py-4 px-5 font-extrabold text-emerald-400 bg-purple-600/[0.06]">✅ قناة مستقلة + كتم فوري + دبل ×2</td>
+                  <td class="py-4 px-5 text-rose-300/90">❌ يحتاج إعدادات معقدة أو يفقد الصوت</td>
+                </tr>
+                <tr class="hover:bg-white/[0.02] transition">
+                  <td class="py-4 px-5 font-bold text-slate-200">مخفف عمليات المعالج المدمج + حماية الديسكورد</td>
+                  <td class="py-4 px-5 font-extrabold text-emerald-400 bg-purple-600/[0.06]">✅ مدمج 2 في 1 داخل نفس الأوفرلي</td>
+                  <td class="py-4 px-5 text-rose-300/90">❌ غير متوفر (بل يزيد العمليات!)</td>
+                </tr>
+                <tr class="hover:bg-white/[0.02] transition">
+                  <td class="py-4 px-5 font-bold text-slate-200">تسجيل حساب أو اشتراك مدفوع أو علامة مائية</td>
+                  <td class="py-4 px-5 font-extrabold text-emerald-400 bg-purple-600/[0.06]">✅ مجاني 100% — يعمل فوراً بلا حساب</td>
+                  <td class="py-4 px-5 text-rose-300/90">❌ حساب إجباري + قيود جودة واشتراكات</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 7. DOWNLOAD & 3-STEP INSTALLATION SECTION                             -->
+    <!-- ===================================================================== -->
+    <section id="download" class="py-16 sm:py-24">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="glass-card rounded-[2rem] p-6 sm:p-10 relative overflow-hidden border-purple-500/40">
+          <!-- Top Subtle Glow -->
+          <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-48 bg-purple-600/25 blur-3xl rounded-full"></div>
+
+          <div class="relative z-10 text-center">
+            <span class="inline-block px-3.5 py-1 rounded-full bg-purple-500/20 border border-purple-400/40 text-purple-200 text-xs font-extrabold mb-4">⬇️ التحميل الرسمي المباشر</span>
+            <h2 class="text-2xl sm:text-4xl font-black text-white mb-3">حمّل MK Shadow Optimizer &amp; PS5 Overlay</h2>
+            <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-7">
+              نسخة نظيفة ومستقلة بالكامل لنظام ويندوز — لا تحتاج تثبيت معقد أو تسجيل دخول.
+            </p>
+
+            <!-- Metadata Badges -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 mb-8 text-xs font-bold">
+              <span class="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-purple-300">📦 الإصدار: v1.1 Final</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-cyan-300">💻 Windows 10 / 11 (64-bit)</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-emerald-300">✅ ترخيص مجاني للاستخدام الشخصي</span>
+              <span class="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-fuchsia-300">👨‍💻 المطور: مجد (MK442)</span>
+            </div>
+
+            <!-- Main Download Button -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-10">
+              <button type="button" id="main-download-btn" onclick="handleDownloadClick()" class="btn-neon-primary w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl text-lg font-black text-white cursor-pointer">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"/></svg>
+                <span>تحميل مباشر (MKOptimizerOverlay v1.1)</span>
+              </button>
+              <a href="https://discord.gg/xD7CrSVby4" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-indigo-600/20 hover:bg-indigo-600/35 border border-indigo-400/40 text-indigo-200 font-extrabold transition">
+                <span>💬</span>
+                <span>الدعم الفني في الديسكورد</span>
+              </a>
+            </div>
+
+            <!-- 3-Step Installation Guide -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-right mb-8">
+              <div class="rounded-2xl bg-[#0a0f24]/90 border border-slate-800 p-5">
+                <div class="w-8 h-8 rounded-xl bg-purple-600/30 border border-purple-400/40 text-purple-200 font-black flex items-center justify-center mb-3">1</div>
+                <h3 class="font-extrabold text-white text-sm mb-1.5">التحميل وفك الضغط</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">حمّل الملف المضغوط وفك الضغط عنه في مجلد عادي (مثلاً داخل مجلد البرامج أو سطح المكتب).</p>
+              </div>
+              <div class="rounded-2xl bg-[#0a0f24]/90 border border-slate-800 p-5">
+                <div class="w-8 h-8 rounded-xl bg-cyan-600/30 border border-cyan-400/40 text-cyan-200 font-black flex items-center justify-center mb-3">2</div>
+                <h3 class="font-extrabold text-white text-sm mb-1.5">تشغيل MKOptimizerOverlay.exe</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">اضغط مرتين على التطبيق ووافق على صلاحية المسؤول، وأول مرة اضغط «تثبيت محرك التسجيل السريع» إذا لم يكن موجوداً.</p>
+              </div>
+              <div class="rounded-2xl bg-[#0a0f24]/90 border border-slate-800 p-5">
+                <div class="w-8 h-8 rounded-xl bg-emerald-600/30 border border-emerald-400/40 text-emerald-200 font-black flex items-center justify-center mb-3">3</div>
+                <h3 class="font-extrabold text-white text-sm mb-1.5">استمتع باللعب والتصوير!</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">فعّل «تشغيل مع ويندوز»، واضغط <strong class="text-white">F8</strong> أو <strong class="text-white">Alt + Z</strong> داخل أي لعبة لفتح الأوفرلي فوراً.</p>
+              </div>
+            </div>
+
+            <!-- Friendly Windows SmartScreen Note -->
+            <div class="rounded-2xl bg-amber-500/10 border border-amber-400/30 p-4 sm:p-5 text-right flex items-start gap-3.5">
+              <span class="text-2xl shrink-0">🛡️</span>
+              <div class="text-xs sm:text-sm text-amber-100/90 leading-relaxed">
+                <strong class="text-amber-300 block mb-1">ملاحظة هامة بخصوص رسالة حماية ويندوز (Windows SmartScreen):</strong>
+                لأن التطبيق مجاني ومستقل تماماً ولا يحمل شهادة توقيع رقمي مدفوعة من شركات، قد تظهر لك نافذة زرقاء من ويندوز عند أول تشغيل فقط.
+                لتشغيله بأمان: اضغط على <strong class="text-white">«معلومات إضافية / More info»</strong> ثم اضغط <strong class="text-emerald-300">«التشغيل على أي حال / Run anyway»</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 8. CREATOR SUPPORT & SOCIALS BANNER                                   -->
+    <!-- ===================================================================== -->
+    <section class="py-12 sm:py-16">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="rounded-[2rem] p-7 sm:p-10 text-center bg-gradient-to-l from-purple-900/55 via-[#171242]/90 to-blue-900/55 border border-purple-400/45 shadow-[0_0_50px_rgba(124,58,237,0.25)]">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-purple-200 text-xs font-extrabold mb-4">
+            <span>❤️</span>
+            <span>ادعم المطور مجد للاستمرار بالتحديثات المجانية</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-black text-white mb-3">
+            💜 استخدم كود <span class="text-cyan-300">MK442</span> في الشوب!
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto mb-7">
+            استخدامك لكود الشوب وانضمامك لسيرفر الديسكورد ومتابعتك للقنوات هو أكبر دعم للاستمرار في تطوير التطبيق وإضافة مميزات جديدة مجاناً للجميع.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button type="button" onclick="copyCreatorCode()" class="btn-neon-primary inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-base font-black text-white cursor-pointer">
+              <span>📋</span>
+              <span>نسخ كود الشوب MK442</span>
+            </button>
+            <a href="https://www.youtube.com/@majd442" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-red-600/20 hover:bg-red-600/35 border border-red-400/40 text-red-100 font-extrabold transition">
+              <span>▶️</span>
+              <span>يوتيوب (@majd442)</span>
+            </a>
+            <a href="https://www.tiktok.com/@mk_shadow6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-cyan-500/20 hover:bg-cyan-500/35 border border-cyan-400/40 text-cyan-100 font-extrabold transition">
+              <span>🎵</span>
+              <span>تيك توك (@mk_shadow6)</span>
+            </a>
+            <a href="https://discord.gg/xD7CrSVby4" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-2xl bg-indigo-500/25 hover:bg-indigo-500/40 border border-indigo-400/45 text-indigo-100 font-extrabold transition">
+              <span>💬</span>
+              <span>سيرفر الديسكورد</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 9. FULL LICENSES & INTELLECTUAL PROPERTY SECTION                      -->
+    <!-- ===================================================================== -->
+    <section id="license" class="py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-9">
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-5 mb-6 border-b border-slate-800">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">📜</span>
+              <div>
+                <h2 class="text-xl sm:text-2xl font-black text-white">التراخيص وحقوق الملكية الفكرية</h2>
+                <p class="text-xs sm:text-sm text-purple-300 font-bold">Copyright © 2026 Majd (MK442). All Rights Reserved.</p>
+              </div>
+            </div>
+            <button type="button" onclick="openLicenseModal()" class="px-4 py-2 rounded-xl bg-slate-800/90 hover:bg-purple-600/30 border border-slate-700 hover:border-purple-400/50 text-xs font-bold text-cyan-300 transition cursor-pointer">
+              عرض النص الكامل للرخصة
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-sm leading-relaxed text-slate-300">
+            <div class="rounded-2xl bg-[#0a0f24]/80 border border-slate-800 p-5">
+              <h3 class="font-extrabold text-white mb-2">1. ملكية المحتوى والبرنامج</h3>
+              <p class="text-xs sm:text-sm text-slate-300">
+                تطبيق <strong class="text-white">MK Shadow Optimizer &amp; PS5 Overlay</strong> بجميع واجهاته، تصميمه، شعاره، وكوده البرمجي مملوك بالكامل للمطور <strong class="text-purple-300">مجد (Majd / MK442)</strong>، وجميع الحقوق محفوظة.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-[#0a0f24]/80 border border-slate-800 p-5">
+              <h3 class="font-extrabold text-emerald-300 mb-2">2. الاستخدام المسموح (مجاني)</h3>
+              <p class="text-xs sm:text-sm text-slate-300">
+                يُسمح لأي مستخدم بتحميل التطبيق واستخدامه <strong class="text-white">مجاناً بالكامل للاستخدام الشخصي</strong> على أجهزة ويندوز، ومشاركة رابط الموقع الرسمي مع الأصدقاء.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-[#0a0f24]/80 border border-slate-800 p-5">
+              <h3 class="font-extrabold text-rose-300 mb-2">3. القيود والحظر</h3>
+              <p class="text-xs sm:text-sm text-slate-300">
+                يُمنع منعاً باتاً بيع هذا التطبيق أو استخدامه لأغراض تجارية، أو إعادة رفعه على مواقع أخرى، أو تعديل أو إزالة حقوق المطور <strong class="text-white">مجد (MK442)</strong> دون إذن خطي مسبق.
+              </p>
+            </div>
+            <div class="rounded-2xl bg-[#0a0f24]/80 border border-slate-800 p-5">
+              <h3 class="font-extrabold text-cyan-300 mb-2">4. تراخيص المكتبات المفتوحة</h3>
+              <p class="text-xs sm:text-sm text-slate-300">
+                يستفيد التطبيق من مكتبات مفتوحة المصدر وفق تراخيصها الأصلية: <strong class="text-white">NAudio</strong> (رخصة MIT) ومحرك <strong class="text-white">FFmpeg</strong> الخارجي الاختياري (رخصة LGPL / GPL).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER                                                                -->
+  <!-- ===================================================================== -->
+  <footer class="border-t border-slate-800/80 bg-[#050812] py-10">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <svg class="w-10 h-10">
+          <use href="#mk-app-logo"></use>
+        </svg>
+        <div>
+          <div class="font-black text-white">MK Shadow Optimizer &amp; PS5 Overlay</div>
+          <div class="text-xs text-slate-400">© 2026 جميع الحقوق والتراخيص محفوظة لـ مجد (Majd / MK442)</div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 text-xs font-bold">
+        <button type="button" onclick="copyCreatorCode()" class="code-pill-glow px-3.5 py-2 rounded-xl text-white cursor-pointer">
+          💜 كود الشوب: MK442
+        </button>
+        <a href="https://www.youtube.com/@majd442" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-red-500/20 border border-slate-800 text-slate-300 hover:text-white transition">يوتيوب</a>
+        <a href="https://www.tiktok.com/@mk_shadow6" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-cyan-500/20 border border-slate-800 text-slate-300 hover:text-white transition">تيك توك</a>
+        <a href="https://discord.gg/xD7CrSVby4" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-indigo-500/20 border border-slate-800 text-slate-300 hover:text-white transition">ديسكورد</a>
+        <button type="button" onclick="openLicenseModal()" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-purple-500/20 border border-slate-800 text-purple-300 hover:text-white transition cursor-pointer">التراخيص</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- LICENSE & OWNERSHIP MODAL                                             -->
+  <!-- ===================================================================== -->
+  <div id="license-modal" class="fixed inset-0 z-[90] hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md" onclick="closeModalOnBackdrop(event, 'license-modal')">
+    <div class="glass-card max-w-2xl w-full rounded-3xl p-6 sm:p-8 border-purple-400/50 relative max-h-[90vh] overflow-y-auto">
+      <button type="button" onclick="closeLicenseModal()" class="absolute top-5 left-5 w-9 h-9 rounded-xl bg-slate-800/90 hover:bg-rose-600/40 border border-slate-700 text-slate-200 font-bold flex items-center justify-center transition cursor-pointer" aria-label="إغلاق">✕</button>
+
+      <div class="flex items-center gap-3.5 mb-5">
+        <svg class="w-12 h-12 shrink-0">
+          <use href="#mk-app-logo"></use>
+        </svg>
+        <div>
+          <h3 class="text-xl font-black text-white">التراخيص وحقوق الملكية — MK Shadow Optimizer</h3>
+          <p class="text-xs font-bold text-purple-300">الإصدار الرسمي v1.1 Final • المالك والمطور: مجد (Majd / MK442)</p>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-[#070b1a] border border-slate-800 p-4 sm:p-5 text-xs sm:text-sm text-slate-300 leading-relaxed space-y-3 mb-5">
+        <p><strong class="text-white">Copyright © 2026 Majd (MK442). All Rights Reserved.</strong></p>
+        <p><strong class="text-purple-300">• الملكية الفكرية:</strong> هذا التطبيق وواجهاته وشعاره ومحتواه الموقع مملوكة بالكامل لـ <strong class="text-white">مجد (Majd / MK442)</strong>.</p>
+        <p><strong class="text-emerald-300">• الاستخدام المجاني:</strong> يُسمح بتحميل واستخدام البرنامج مجاناً للاستخدام الشخصي على أجهزة Windows 10 / 11.</p>
+        <p><strong class="text-rose-300">• القيود:</strong> يُمنع بيع التطبيق، أو إعادة رفعه على روابط خارجية، أو تعديل أو إزالة حقوق المطور أو نسبته لغير صاحبه بدون إذن خطي من مجد.</p>
+        <p><strong class="text-cyan-300">• مكتبات الطرف الثالث:</strong> NAudio (MIT License) • FFmpeg (LGPL / GPL — يُحمّل بشكل مستقل).</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <button type="button" onclick="copyCreatorCode()" class="code-pill-glow px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold text-white cursor-pointer">
+          💜 نسخ كود الشوب MK442
+        </button>
+        <button type="button" onclick="closeLicenseModal()" class="btn-neon-primary px-6 py-2.5 rounded-xl text-sm font-extrabold text-white cursor-pointer">
+          فهمت — إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- DOWNLOAD SETUP INFO MODAL (Shown only while DOWNLOAD_URL is placeholder) -->
+  <!-- ===================================================================== -->
+  <div id="setup-link-modal" class="fixed inset-0 z-[90] hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md" onclick="closeModalOnBackdrop(event, 'setup-link-modal')">
+    <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-7 border-cyan-400/50 relative">
+      <button type="button" onclick="closeSetupModal()" class="absolute top-4 left-4 w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold flex items-center justify-center cursor-pointer">✕</button>
+      <div class="text-3xl mb-3">🚀</div>
+      <h3 class="text-lg sm:text-xl font-black text-white mb-2">جاهز لربط ملف التحميل المباشر!</h3>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+        هذه معاينة للموقع قبل ربط رابط التحميل النهائي. بمجرد رفع ملف <strong class="text-cyan-300">MKOptimizerOverlay.zip</strong> على <strong>GitHub Releases</strong>، افتح ملف <code class="px-1.5 py-0.5 rounded bg-slate-800 text-purple-300">index.html</code> وضع رابط التحميل في السطر الأول داخل <code class="px-1.5 py-0.5 rounded bg-slate-800 text-cyan-300">DOWNLOAD_URL</code> ليبدأ التحميل مباشرة للزوار!
+      </p>
+      <div class="rounded-xl bg-[#070b1a] border border-slate-800 p-3 text-left font-mono text-xs text-cyan-300 overflow-x-auto mb-5" dir="ltr">
+        const DOWNLOAD_URL = "https://github.com/majd442/mk-shadow-optimizer/releases/latest/download/MKOptimizerOverlay_v1.1.zip";
+      </div>
+      <div class="flex justify-end">
+        <button type="button" onclick="closeSetupModal()" class="btn-neon-primary px-6 py-2.5 rounded-xl text-sm font-extrabold text-white cursor-pointer">تمام</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- INTERACTIVE JAVASCRIPT                                                -->
+  <!-- ===================================================================== -->
+  <script>
+    // =========================================================================
+    // 👇 ضع رابط التحميل المباشر لملف التطبيق هنا بعد رفعه على GitHub Releases
+    // =========================================================================
+    const DOWNLOAD_URL = "https://github.com/use-code-mk442/mk-shadow-optimizer/releases/download/v1.1/MKOptimizerOverlay.exe";
+
+    const CREATOR_CODE = "MK442";
+
+    // --- 1. PS5-Style Floating Toast Notification ---
+    function showToast(icon, title, message) {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast-enter pointer-events-auto rounded-2xl px-4 py-3.5 border border-purple-400/50 bg-gradient-to-l from-[#121836]/95 to-[#1d1145]/95 backdrop-blur-xl shadow-[0_12px_35px_rgba(124,58,237,0.38)] flex items-start gap-3";
+      toast.innerHTML = `
+        <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-xl shrink-0">${icon}</div>
+        <div class="min-w-0">
+          <div class="font-extrabold text-sm text-white leading-snug">${title}</div>
+          <div class="text-xs text-slate-300 mt-0.5 leading-relaxed">${message}</div>
+        </div>
+      `;
+
+      container.appendChild(toast);
+
+      // Keep max 3 stacked toasts
+      while (container.children.length > 3) {
+        container.removeChild(container.firstChild);
+      }
+
+      setTimeout(() => {
+        toast.classList.remove("toast-enter");
+        toast.classList.add("toast-exit");
+        setTimeout(() => toast.remove(), 260);
+      }, 3400);
+    }
+
+    // --- 2. Safe Clipboard Copy (works inside iFrames via execCommand) ---
+    function copyCreatorCode() {
+      try {
+        const tempInput = document.createElement("textarea");
+        tempInput.value = CREATOR_CODE;
+        tempInput.setAttribute("readonly", "");
+        tempInput.style.position = "fixed";
+        tempInput.style.opacity = "0";
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      } catch (err) {
+        // Silent fallback
+      }
+      showToast("💜", "تم نسخ كود الشوب MK442!", "استخدم كود MK442 في الشوب لدعم مجد ❤️");
+    }
+
+    // --- 3. Download Button Handler ---
+    function handleDownloadClick() {
+      if (!DOWNLOAD_URL || DOWNLOAD_URL.includes("YOUR_GITHUB_RELEASE")) {
+        showToast("📦", "جاهز للنشر!", "ضع رابط GitHub Releases في DOWNLOAD_URL ليبدأ التحميل المباشر.");
+        const modal = document.getElementById("setup-link-modal");
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        return;
+      }
+      showToast("⬇️", "بدأ تحميل MK Shadow Optimizer!", "فك الضغط وشغّل MKOptimizerOverlay.exe كمسؤول.");
+      window.open(DOWNLOAD_URL, "_blank", "noopener,noreferrer");
+    }
+
+    // --- 4. Modals & Mobile Menu ---
+    function openLicenseModal() {
+      const m = document.getElementById("license-modal");
+      m.classList.remove("hidden");
+      m.classList.add("flex");
+    }
+    function closeLicenseModal() {
+      const m = document.getElementById("license-modal");
+      m.classList.add("hidden");
+      m.classList.remove("flex");
+    }
+    function closeSetupModal() {
+      const m = document.getElementById("setup-link-modal");
+      m.classList.add("hidden");
+      m.classList.remove("flex");
+    }
+    function closeModalOnBackdrop(e, id) {
+      if (e.target && e.target.id === id) {
+        const m = document.getElementById(id);
+        m.classList.add("hidden");
+        m.classList.remove("flex");
+      }
+    }
+    function toggleMobileMenu() {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeLicenseModal();
+        closeSetupModal();
+      }
+    });
+
+    // --- 5. Interactive Live PS5 Overlay Demo Logic ---
+    const demoState = {
+      bufferActive: true,
+      bufferSeconds: 255, // 04:15
+      manualRec: false,
+      recSeconds: 0,
+      recInterval: null,
+      discordAudio: true,
+      protectDiscord: true,
+      boosted: false,
+      cpu: 14,
+      procs: 186,
+      killable: 24
+    };
+
+    function formatClock(totalSec) {
+      const m = String(Math.floor(totalSec / 60)).padStart(2, "0");
+      const s = String(totalSec % 60).padStart(2, "0");
+      return `${m}:${s}`;
+    }
+
+    function updateDemoUI() {
+      const audioLabel = demoState.discordAudio ? "اللعبة + الديسكورد" : "اللعبة فقط";
+      const clockEl = document.getElementById("demo-buffer-clock");
+      const badgeEl = document.getElementById("demo-encoder-badge");
+      const toggleBtn = document.getElementById("demo-replay-toggle");
+
+      if (demoState.bufferActive) {
+        clockEl.textContent = `المسجل: ${formatClock(demoState.bufferSeconds)} / 10:00 • ${audioLabel}`;
+        badgeEl.textContent = "● NVENC Zero-Copy (DXGI)";
+        badgeEl.className = "px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/35 text-emerald-300 text-xs font-bold";
+        toggleBtn.textContent = "⏹ إيقاف المخزن";
+      } else {
+        clockEl.textContent = "المخزن الدائري متوقف — استهلاك المحرك 0%";
+        badgeEl.textContent = "○ المخزن متوقف (0%)";
+        badgeEl.className = "px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/35 text-amber-300 text-xs font-bold";
+        toggleBtn.textContent = "▶ تشغيل المخزن";
+      }
+
+      document.getElementById("demo-cpu-pill").textContent = `CPU: ${demoState.cpu}% • عمليات: ${demoState.procs}`;
+      document.getElementById("demo-boost-sub").textContent = demoState.killable > 0
+        ? `متاح إغلاق ${demoState.killable} عملية خلفية`
+        : "جهازك نظيف الآن ✨ (اضغط للمحاكاة مجدداً)";
+
+      const recBtn = document.getElementById("demo-rec-btn");
+      const recIcon = document.getElementById("demo-rec-icon");
+      const recTitle = document.getElementById("demo-rec-title");
+      const recSub = document.getElementById("demo-rec-sub");
+
+      if (demoState.manualRec) {
+        recBtn.className = "rounded-2xl bg-rose-950/75 hover:bg-rose-900/80 border border-rose-400/80 p-3.5 text-center flex flex-col items-center justify-center gap-1 transition cursor-pointer";
+        recIcon.textContent = "⏹";
+        recTitle.textContent = "إيقاف التسجيل";
+        recSub.textContent = `جاري التسجيل ${formatClock(demoState.recSeconds)} • ${audioLabel}`;
+      } else {
+        recBtn.className = "rounded-2xl bg-[#111936]/90 hover:bg-rose-950/60 border border-slate-700/80 hover:border-rose-400/70 p-3.5 text-center flex flex-col items-center justify-center gap-1 transition cursor-pointer";
+        recIcon.textContent = "⏺";
+        recTitle.textContent = "بدء تسجيل فيديو";
+        recSub.textContent = `60 FPS • ${audioLabel}`;
+      }
+    }
+
+    function setDemoStatus(text) {
+      document.getElementById("demo-status-line").textContent = text;
+    }
+
+    function demoToggleBuffer() {
+      demoState.bufferActive = !demoState.bufferActive;
+      updateDemoUI();
+      if (demoState.bufferActive) {
+        setDemoStatus("🟢 تم تشغيل المخزن الدائري بترميز كرت الشاشة NVENC Zero-Copy.");
+        showToast("🟢", "المخزن الدائري نشط", "جاهز لحفظ آخر 15 ثانية حتى 10 دقائق بدون تعليق.");
+      } else {
+        setDemoStatus("⏹ تم إيقاف المخزن الدائري (استهلاك FFmpeg والصوت الآن 0%).");
+        showToast("⏹", "تم إيقاف المخزن", "استهلاك محرك التسجيل الآن 0%.");
+      }
+    }
+
+    function demoSaveClip(durationLabel) {
+      if (!demoState.bufferActive) {
+        setDemoStatus("⚠️ شغّل المخزن الدائري أولاً لتتمكن من حفظ آخر اللقطات.");
+        showToast("⚠️", "المخزن متوقف", "اضغط «▶ تشغيل المخزن» أولاً لبدء حفظ اللقطات.");
+        return;
+      }
+      const audioText = demoState.discordAudio ? "بصوت اللعبة والديسكورد" : "بصوت اللعبة فقط (الديسكورد مكتوم)";
+      setDemoStatus(`✅ تم حفظ آخر ${durationLabel} (${audioText}) في MK_Captures!`);
+      showToast("🎬", `تم حفظ آخر ${durationLabel}!`, `حُفظ المقطع MP4 ${audioText} خلال 0.4 ثانية.`);
+    }
+
+    function demoScreenshot() {
+      const flash = document.getElementById("demo-flash");
+      flash.classList.remove("shutter-flash");
+      void flash.offsetWidth; // restart animation
+      flash.classList.add("shutter-flash");
+
+      setDemoStatus("📸 تم التقاط الشاشة وحفظها PNG + نسخها تلقائياً للحافظة (جاهزة Ctrl+V).");
+      showToast("📸", "تم التقاط الشاشة!", "حُفظت في MK_Captures ونُسخت للحافظة مباشرة.");
+    }
+
+    function demoToggleRecording() {
+      demoState.manualRec = !demoState.manualRec;
+      if (demoState.manualRec) {
+        demoState.recSeconds = 0;
+        demoState.recInterval = setInterval(() => {
+          demoState.recSeconds++;
+          updateDemoUI();
+        }, 1000);
+        setDemoStatus("⏺ بدأ تسجيل الفيديو الآن بجودة 60 FPS (NVENC Zero-Copy)...");
+        showToast("⏺", "بدأ تسجيل الفيديو", "جاري التسجيل بدون تأثير على الفريمات.");
+      } else {
+        clearInterval(demoState.recInterval);
+        const dur = formatClock(demoState.recSeconds);
+        setDemoStatus(`✅ تم إيقاف التسجيل وحفظ الفيديو (${dur}) في MK_Captures!`);
+        showToast("🎬", "تم حفظ الفيديو!", `المدة ${dur} — حُفظ بصيغة MP4 جاهز للمشاركة.`);
+      }
+      updateDemoUI();
+    }
+
+    function demoToggleDiscordAudio() {
+      demoState.discordAudio = document.getElementById("demo-discord-audio").checked;
+      updateDemoUI();
+      if (demoState.discordAudio) {
+        setDemoStatus("💬 صوت خويك بالديسكورد مفعّل الآن في التسجيل (Sonar - Chat).");
+        showToast("💬", "صوت الديسكورد مفعّل", "سيُسجل صوت أخوياك بوضوح مع صوت اللعبة.");
+      } else {
+        setDemoStatus("🔇 تم كتم صوت الديسكورد من التسجيل فوراً — صوت اللعبة فقط.");
+        showToast("🔇", "تم كتم صوت الديسكورد", "المقاطع القادمة ستسجل صوت اللعبة بدون الديسكورد.");
+      }
+    }
+
+    function demoToggleProtectDiscord() {
+      demoState.protectDiscord = document.getElementById("demo-protect-discord").checked;
+      if (demoState.protectDiscord) {
+        setDemoStatus("🛡️ حماية الديسكورد مفعّلة — لن ينطفي أثناء التخفيف ولا يطلعك من المكالمة.");
+        showToast("🛡️", "حماية الديسكورد مفعّلة", "سيبقى الديسكورد شغالاً عند الضغط على تخفيف المعالج.");
+      } else {
+        setDemoStatus("⚠️ تم إلغاء حماية الديسكورد — سيُغلق الديسكورد عند الضغط على تخفيف المعالج.");
+        showToast("⚠️", "إلغاء حماية الديسكورد", "سيُغلق الديسكورد مع باقي تطبيقات الخلفية عند التخفيف.");
+      }
+    }
+
+    function demoCpuBoost() {
+      if (demoState.killable === 0) {
+        // Reset simulation so visitor can test again
+        demoState.cpu = 14;
+        demoState.procs = 186;
+        demoState.killable = 24;
+        document.getElementById("demo-fps").textContent = "240";
+        updateDemoUI();
+        setDemoStatus("🔄 تم إعادة محاكاة العمليات الخلفية — جرّب الضغط على تخفيف المعالج مجدداً.");
+        return;
+      }
+
+      const closedCount = demoState.protectDiscord ? 24 : 30;
+      const freedRam = demoState.protectDiscord ? 940 : 1180;
+      demoState.procs -= closedCount;
+      demoState.cpu = 6;
+      demoState.killable = 0;
+      document.getElementById("demo-fps").textContent = "268";
+      updateDemoUI();
+
+      const discordMsg = demoState.protectDiscord
+        ? " (تم إبقاء الديسكورد شغالاً 🛡️)"
+        : " (تم إغلاق الديسكورد أيضاً)";
+      setDemoStatus(`🚀 تم إغلاق ${closedCount} عملية خلفية وتوفير ${freedRam} MB من الرام${discordMsg}`);
+      showToast("🚀", "تم تخفيف المعالج!", `أُغلقت ${closedCount} عملية وتوفّر ${freedRam} MB رام${discordMsg}`);
+    }
+
+    // Live buffer clock tick in demo
+    setInterval(() => {
+      if (demoState.bufferActive) {
+        demoState.bufferSeconds = Math.min(600, demoState.bufferSeconds + 1);
+        updateDemoUI();
+      }
+    }, 1000);
+
+    updateDemoUI();
+  </script>
+</body>
+</html>
