@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Shadow Optimizer — تحميل التطبيق الرسمي (v2.6)</title>
+  <meta name="description" content="تطبيق MK Shadow Optimizer &amp; PS5 Overlay للويندوز من تطوير مجد (MK442) — زيادة الفريمات، عدّاد أداء حقيقي بـ Alt+R، وتسجيل لقطات 60/120 فريم مرتّبة حسب كل لعبة." />
+  <meta name="theme-color" content="#090B10" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #090B10;
+      --surface: #10131C;
+      --surface-2: #151926;
+      --surface-hover: #1A1F30;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.14);
+      --accent: #8B5CF6;
+      --accent-soft: rgba(139, 92, 246, 0.14);
+      --accent-border: rgba(139, 92, 246, 0.42);
+      --accent-text: #C4B5FD;
+      --green: #34D399;
+      --green-soft: rgba(52, 211, 153, 0.12);
+      --cyan: #38BDF8;
+      --text: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --muted: #8B95A7;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 9px;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+      background-color: var(--bg);
+      background-image: radial-gradient(ellipse 80% 45% at 50% -10%, rgba(139, 92, 246, 0.13), transparent 70%);
+      background-repeat: no-repeat;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Clean Sticky Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(9, 11, 16, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #7C3AED, #4F46E5);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-name {
+      font-size: 15.5px;
+      font-weight: 800;
+      letter-spacing: -0.1px;
+    }
+
+    .brand-ver {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-text);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      padding: 1px 7px;
+      border-radius: 6px;
+      direction: ltr;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-tab {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 700;
+      padding: 6px 13px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: color 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .nav-tab:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .nav-tab.active {
+      color: var(--text);
+      background: var(--surface-2);
+      border-color: var(--border-strong);
+    }
+
+    .code-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-text);
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .code-btn:hover {
+      background: rgba(139, 92, 246, 0.22);
+      border-color: rgba(196, 181, 253, 0.55);
+      color: #fff;
+    }
+
+    .mono {
+      font-family: var(--mono);
+      direction: ltr;
+      display: inline-block;
+    }
+
+    /* Views */
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+      animation: softFade 0.22s ease;
+    }
+
+    @keyframes softFade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 54px 0 36px;
+      text-align: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px rgba(52, 211, 153, 0.65);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 4.6vw, 44px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.4px;
+      color: #FFFFFF;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      max-width: 640px;
+      margin: 0 auto 28px;
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 24px;
+      border-radius: var(--radius-md);
+      background: #7C3AED;
+      border: 1px solid #A78BFA;
+      color: #FFFFFF;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.28);
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-primary:hover {
+      background: #6D28D9;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(124, 58, 237, 0.36);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-hover);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+
+    .trust-inline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .trust-inline span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .trust-inline svg {
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* Calm App UI Showcase */
+    .preview-shell {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin: 12px 0 36px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .preview-shell.mode-gray {
+      background: #141414;
+      border-color: #2B2B2B;
+    }
+
+    .preview-shell.mode-gray .accent-c { color: #E5E5E5 !important; }
+    .preview-shell.mode-gray .hud-bar { background: #1B1B1B; border-color: #363636; }
+    .preview-shell.mode-gray .ui-tile { background: #1A1A1A; border-color: #2E2E2E; }
+    .preview-shell.mode-gray .mode-pill.active { background: #333; border-color: #666; color: #fff; }
+
+    .preview-shell.mode-cyan .accent-c { color: #38BDF8 !important; }
+    .preview-shell.mode-cyan .hud-bar { border-color: rgba(56, 189, 248, 0.35); }
+    .preview-shell.mode-cyan .mode-pill.active { background: rgba(56, 189, 248, 0.16); border-color: rgba(56, 189, 248, 0.45); color: #BAE6FD; }
+
+    .preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preview-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mode-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .mode-pill {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 11px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .mode-pill:hover {
+      color: var(--text);
+      border-color: var(--border-strong);
+    }
+
+    .mode-pill.active {
+      background: var(--accent-soft);
+      border-color: var(--accent-border);
+      color: var(--accent-text);
+    }
+
+    .hud-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .hud-bar {
+      direction: ltr;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: #0B0E17;
+      border: 1px solid var(--accent-border);
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hud-bar.off {
+      opacity: 0.22;
+    }
+
+    .hud-item {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .hud-k {
+      color: var(--muted);
+      font-size: 10.5px;
+      font-weight: 500;
+    }
+
+    .hud-div {
+      width: 1px;
+      height: 12px;
+      background: var(--border);
+    }
+
+    .ui-tiles {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .ui-tile {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 12px;
+      text-align: center;
+      transition: border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .ui-tile:hover {
+      border-color: var(--border-strong);
+      background: var(--surface-hover);
+    }
+
+    .ui-tile-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 6px;
+    }
+
+    .ui-tile-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Section Headings */
+    .section-head {
+      margin-bottom: 16px;
+    }
+
+    .section-head h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .section-head p {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    /* 2x2 Clean Feature Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      transition: border-color 0.18s ease;
+    }
+
+    .card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .icon-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      display: grid;
+      place-items: center;
+      color: var(--accent-text);
+      margin-bottom: 12px;
+    }
+
+    .icon-box.green {
+      color: var(--green);
+      background: var(--green-soft);
+      border-color: rgba(52, 211, 153, 0.25);
+    }
+
+    .card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* Trust Strip */
+    .trust-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      margin-bottom: 28px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .trust-col h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .trust-col p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Support & Socials Card */
+    .creator-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .creator-bar h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .creator-bar p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .links-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .link-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 13px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      transition: color 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+
+    .link-pill:hover {
+      color: #fff;
+      border-color: var(--border-strong);
+      background: var(--surface-hover);
+    }
+
+    /* Guide View */
+    .guide-top {
+      padding: 34px 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .guide-top h2 {
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .guide-top p {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .seg-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 6px;
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+    }
+
+    .seg-btn {
+      flex: 1;
+      min-width: 140px;
+      padding: 9px 12px;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .seg-btn:hover {
+      color: var(--text);
+    }
+
+    .seg-btn.active {
+      background: var(--surface-2);
+      border-color: var(--border-strong);
+      color: #fff;
+    }
+
+    .guide-panel {
+      display: none;
+    }
+
+    .guide-panel.active {
+      display: block;
+      animation: softFade 0.2s ease;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .step-n {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: var(--accent-text);
+      font-family: var(--mono);
+      font-size: 13.5px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .step p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .kbd-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .kbd-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 10px;
+      text-align: center;
+    }
+
+    .kbd-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      border-bottom-width: 2px;
+      padding: 4px 10px;
+      border-radius: 7px;
+      direction: ltr;
+      margin-bottom: 8px;
+    }
+
+    .kbd-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .faq {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .faq h4 {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .faq p {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .guide-footer-cta {
+      background: var(--surface);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 0 30px;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    footer strong {
+      color: var(--text-secondary);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #171C2B;
+      border: 1px solid var(--accent-border);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 700;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 90;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 780px) {
+      .features-grid,
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+      .ui-tiles,
+      .kbd-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .nav-inner {
+        flex-wrap: wrap;
+      }
+      .creator-bar,
+      .guide-footer-cta {
+        flex-direction: column;
+        text-align: center;
+      }
+      .links-row {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الهيدر النظيف -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand" onclick="openView('home')" role="button" tabindex="0">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">MK Shadow</span>
+          <span class="brand-ver">v2.6</span>
+        </div>
+      </div>
+
+      <nav class="nav-right" aria-label="التنقل الرئيسي">
+        <button id="navHome" class="nav-tab active" onclick="openView('home')">التحميل</button>
+        <button id="navGuide" class="nav-tab" onclick="openView('guide')">الشروحات والتفاصيل</button>
+        <button class="code-btn" onclick="copyCode()" title="اضغط لنسخ كود الشوب">
+          <span>كود الشوب:</span>
+          <span class="mono">MK442</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ==================== الصفحة الرئيسية ==================== -->
+    <section id="view-home" class="view active">
+
+      <div class="hero" id="download">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>آخر إصدار v2.6 Final — مجاني لويندوز 10 و 11</span>
+        </div>
+
+        <h1>MK Shadow Optimizer &amp; PS5 Overlay</h1>
+
+        <p>
+          تطبيق خفيف ومرتّب للويندوز يجمع لك كل اللي تحتاجه وقت اللعب: يزيد الفريمات وينظف الخلفية
+          بدون ما يطفي عليك الديسكورد، وفيه أوفرلي سريع تسجّل فيه آخر اللقطات بـ 60 أو 120 فريم حقيقية،
+          مع عدّاد فريمات بـ <span class="mono" style="color:#fff;">Alt + R</span> زي حق NVIDIA.
+        </p>
+
+        <div class="cta-group">
+          <a class="btn-primary"
+             href="https://github.com/use-code-mk442/mk-shadow-optimizer/releases/latest/download/MKOptimizerOverlay.exe"
+             onclick="showToast('بدأ تحميل MKOptimizerOverlay.exe — بالتوفيق!')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>تحميل التطبيق للويندوز</span>
+          </a>
+
+          <button class="btn-secondary" onclick="openView('guide')">
+            <span>الشروحات وكل التفاصيل</span>
+          </button>
+        </div>
+
+        <div class="trust-inline">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            ملف EXE واحد مباشر
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            آمن 100% مع مكافحة الغش
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            يدعم NVIDIA / AMD / Intel
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            ترجع إعداداتك بضغطة زر
+          </span>
+        </div>
+      </div>
+
+      <!-- معاينة هادئة وبسيطة لشكل التطبيق وعدّاد Alt+R والأوضاع -->
+      <div id="previewBox" class="preview-shell">
+        <div class="preview-top">
+          <div class="preview-label">
+            <span>معاينة سريعة للعدّاد وأوضاع الثيم داخل التطبيق:</span>
+          </div>
+          <div class="mode-group">
+            <button class="mode-pill active" onclick="setPreviewMode('default', this)">عالي (بنفسجي)</button>
+            <button class="mode-pill" onclick="setPreviewMode('gray', this)">رصاصي (أخف شيء)</button>
+            <button class="mode-pill" onclick="setPreviewMode('cyan', this)">مخصص (سماوي)</button>
+            <button id="btnHudDemo" class="mode-pill active" onclick="togglePreviewHud()">عدّاد Alt + R</button>
+          </div>
+        </div>
+
+        <div class="hud-row">
+          <div id="demoHud" class="hud-bar">
+            <span class="hud-item"><span class="hud-k">FPS</span><span style="color:#34D399;">120</span></span>
+            <span class="hud-div"></span>
+            <span class="hud-item"><span class="hud-k">LAT</span><span class="accent-c" style="color:#C4B5FD;">8.3ms</span></span>
+            <span class="hud-div"></span>
+            <span class="hud-item"><span class="hud-k">GPU</span><span class="accent-c" style="color:#38BDF8;">64%</span></span>
+            <span class="hud-div"></span>
+            <span class="hud-item"><span class="hud-k">TEMP</span><span style="color:#34D399;">59°C</span></span>
+            <span class="hud-div"></span>
+            <span class="hud-item"><span class="hud-k">CPU</span><span class="accent-c" style="color:#C4B5FD;">24%</span></span>
+            <span class="hud-div"></span>
+            <span class="hud-item"><span class="hud-k">RAM</span><span style="color:#FBBF24;">31%</span></span>
+          </div>
+          <span style="font-size:12px; color:var(--muted);">يشتغل فوق اللعبة بدون ما يعيق النقرات</span>
+        </div>
+
+        <div class="ui-tiles">
+          <div class="ui-tile">
+            <div class="accent-c" style="color:#C4B5FD; font-weight:800; font-size:13px;">F8</div>
+            <div class="ui-tile-title">حفظ آخر لقطة</div>
+            <div class="ui-tile-sub">5ث • 15ث • 1د • 10د</div>
+          </div>
+          <div class="ui-tile">
+            <div class="accent-c" style="color:#38BDF8; font-weight:800; font-size:13px;">F9</div>
+            <div class="ui-tile-title">لقطة شاشة</div>
+            <div class="ui-tile-sub">حفظ + نسخ للحافظة</div>
+          </div>
+          <div class="ui-tile">
+            <div style="color:#F87171; font-weight:800; font-size:13px;">F10</div>
+            <div class="ui-tile-title">تسجيل 60 / 120 FPS</div>
+            <div class="ui-tile-sub">لعبة + ديسكورد + مايك</div>
+          </div>
+          <div class="ui-tile">
+            <div style="color:#34D399; font-weight:800; font-size:13px;">BOOST</div>
+            <div class="ui-tile-title">تخفيف المعالج</div>
+            <div class="ui-tile-sub">مع حماية الديسكورد</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- أهم 4 مميزات بدون حشو -->
+      <div class="section-head">
+        <h2>وش يسوي لك التطبيق؟</h2>
+        <p>الزبدة باختصار — وإذا تبي الشرح الكامل والاختصارات بتلقاها في قسم الشروحات.</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="card">
+          <div class="icon-box green">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3>عدّاد فريمات حقيقي بـ Alt + R</h3>
+          <p>
+            يعرض لك فريمات اللعبة الفعلية (مو بس هرتز الشاشة) مع استهلاك وحرارة الكرت والمعالج والرام وVRAM والبنق،
+            وتقدر تعدّل مكانه وحجم الخط والشفافية وتختار وش تبي يطلع لك من الإعدادات.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+            </svg>
+          </div>
+          <h3>تسجيل 60 / 120 فريم بدون تقطيع</h3>
+          <p>
+            يسجّل الفيديو مباشرة على كرت الشاشة وبالتوازي يسجّل صوت اللعبة وصوت خويك بالديسكورد والمايك ويدمجها فورياً،
+            ومعه زر يضغط لك أي مقطع تحت 10MB وينسخه عشان ترسله بالديسكورد بدون Nitro.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3>يرتّب مقاطعك لحالها حسب كل لعبة</h3>
+          <p>
+            يوم تصوّر لقطة وأنت تلعب فورتنايت يحفظها باسم فورتنايت والوقت داخل مجلد فورتنايت، وإذا روبلوكس أو ماينكرافت
+            يحط كل لعبة لحالها وتلقاها مرتبة وجاهزة في معرض اللقطات داخل التطبيق.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="icon-box green">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h3>تخفيف البيسي وزيادة الفريمات بأمان</h3>
+          <p>
+            ينظّف برامج الخلفية الثقيلة زي كروم ويفضي الرام بدون ما يفصلك من مكالمة الديسكورد، وفيه مركز فريمات يفحص
+            معالجك وكرتك ويورّيك بالضبط وش بيعدّل قبل ما يطبّق أي شيء.
+          </p>
+        </article>
+      </div>
+
+      <!-- قسم الثقة والأمان -->
+      <div class="trust-box">
+        <div class="section-head" style="margin-bottom:0;">
+          <h2 style="font-size:17px;">ليش التطبيق موثوق وخفيف على جهازك؟</h2>
+        </div>
+        <div class="trust-grid">
+          <div class="trust-col">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34D399" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              آمن مع مكافحة الغش
+            </h4>
+            <p>ما يحقن أي ملفات DLL داخل الألعاب أبداً؛ يقرأ الفريمات من نظام ويندوز مباشرة (ETW)، فما عليه أي خوف بحسابك.</p>
+          </div>
+
+          <div class="trust-col">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C4B5FD" stroke-width="2.2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.26.6.85 1 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              4 أوضاع خفّة ومخصص
+            </h4>
+            <p>عندك وضع عالي، ومتوسط، ورصاصي أخف شيء بدون ألوان وتوهج، ووضع مخصص تغيّر فيه اللون والمؤثرات على كيفك.</p>
+          </div>
+
+          <div class="trust-col">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              ترجّع كل شيء بضغطة
+            </h4>
+            <p>التطبيق ما يكسر سرعة القطع ولا يحذف ملفاتك، وفيه زر يرجّع إعدادات ويندوز الأصلية متى ما بغيت.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- شريط المطور والدعم والروابط -->
+      <div class="creator-bar">
+        <div>
+          <h4>تطوير مجد (MK442) — مجاني بالكامل للجميع</h4>
+          <p>إذا عجبك التطبيق وحاب تدعمني، استخدم كود <strong class="mono" style="color:#fff;">MK442</strong> في الشوب وتابعني هنا.</p>
+        </div>
+
+        <div class="links-row">
+          <button class="code-btn" onclick="copyCode()">نسخ MK442</button>
+          <a class="link-pill" href="https://guns.lol/mk_shadow" target="_blank" rel="noopener">guns.lol</a>
+          <a class="link-pill" href="https://www.youtube.com/@majd442" target="_blank" rel="noopener">يوتيوب</a>
+          <a class="link-pill" href="https://www.tiktok.com/@mk442.tv" target="_blank" rel="noopener">تيك توك</a>
+          <a class="link-pill" href="https://discord.gg/xD7CrSVby4" target="_blank" rel="noopener">ديسكورد</a>
+          <a class="link-pill" href="https://github.com/use-code-mk442/mk-shadow-optimizer/releases" target="_blank" rel="noopener">الإصدارات</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== صفحة الشروحات والتفاصيل الكاملة ==================== -->
+    <section id="view-guide" class="view">
+
+      <div class="guide-top">
+        <div>
+          <h2>الشروحات وكل تفاصيل التطبيق</h2>
+          <p>كل شيء مشروح ببساطة: كيف تشغّله، وش يسوي بالضبط، والاختصارات والأسئلة المهمة.</p>
+        </div>
+        <button class="btn-secondary" style="padding:9px 16px; font-size:13.5px;" onclick="openView('home')">
+          رجوع لصفحة التحميل
+        </button>
+      </div>
+
+      <div class="seg-tabs" role="tablist">
+        <button class="seg-btn active" onclick="openGuideTab('setup', this)">طريقة التشغيل</button>
+        <button class="seg-btn" onclick="openGuideTab('all-features', this)">كل المميزات (v2.6)</button>
+        <button class="seg-btn" onclick="openGuideTab('keys', this)">الاختصارات</button>
+        <button class="seg-btn" onclick="openGuideTab('faq', this)">الأسئلة والأمان</button>
+      </div>
+
+      <!-- تبويب 1: طريقة التشغيل -->
+      <div id="gtab-setup" class="guide-panel active">
+        <div class="steps">
+          <div class="step">
+            <div class="step-n">1</div>
+            <div>
+              <h4>حمّل الملف وحطه في مجلد خاص فيه</h4>
+              <p>نزّل ملف <strong class="mono">MKOptimizerOverlay.exe</strong> وحطه في مجلد مرتب (مثلاً على سطح المكتب). إذا طلعت لك رسالة ويندوز الزرقاء أول مرة (SmartScreen)، اضغط <strong>More info</strong> بعدين <strong>Run anyway</strong> — هذا طبيعي لأي برنامج مستقل بدون شهادة مدفوعة.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">2</div>
+            <div>
+              <h4>ثبّت محرك التسجيل مرة وحدة بس</h4>
+              <p>أول ما تفتح التطبيق، إذا محرك <strong class="mono">FFmpeg</strong> مو موجود عندك بيطلع لك فوق زر <strong>«تثبيت المحرك»</strong>؛ اضغطه مرة وحدة والتطبيق بيحمّله ويجهّزه لحاله خلال ثواني.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">3</div>
+            <div>
+              <h4>اضبط ألوانك وعدّاد الفريمات على كيفك</h4>
+              <p>ادخل <strong>الإعدادات</strong> واختر الوضع اللي يريحك (عالي / متوسط / رصاصي أخف شيء / مخصص تغيّر فيه اللون والمؤثرات). ومن تبويب <strong>عدّاد الأداء (Alt+R)</strong> تقدر تختار وش يطلع لك فوق اللعبة ومكانه وشفافيته.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">4</div>
+            <div>
+              <h4>وين تنحفظ لقطاتك ومقاطعك؟</h4>
+              <p>كل شيء ينحفظ تلقائياً في <strong class="mono">Videos &gt; MK_Captures</strong> ومرتّب داخل مجلدات باسم كل لعبة لحالها، وتقدر تشوفها أو تضغطها للديسكورد مباشرة من زر <strong>المعرض</strong> أو <strong>أماكن الصور والمقاطع</strong> في الأوفرلي.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- تبويب 2: كل المميزات -->
+      <div id="gtab-all-features" class="guide-panel">
+        <div class="features-grid">
+          <div class="card">
+            <h3>عدّاد الأداء بـ Alt + R (زي NVIDIA)</h3>
+            <p>يقرأ الفريمات الحقيقية للعبة عبر Windows ETW مع زمن الإطار واستهلاك وحرارة الكرت والمعالج والرام وVRAM والتردد والطاقة والمروحة والبنق، بـ 3 أشكال عرض و4 زوايا على الشاشة.</p>
+          </div>
+          <div class="card">
+            <h3>تسجيل 60 / 120 فريم بدون تقطيع</h3>
+            <p>مسجّل فيديو مباشر على كرت الشاشة (Zero-Copy) مع تسجيل الصوت بالتوازي، يحفظ آخر 5ث لين 10د ويحذف اللي قبل 5 دقايق تلقائياً عشان ما يعبي الهاردسك.</p>
+          </div>
+          <div class="card">
+            <h3>ترتيب وتسمية حسب كل لعبة</h3>
+            <p>يكتشف اللعبة الشغالة (فورتنايت، روبلوكس، ماينكرافت، فالورانت، CS2، فورزا، كود وغيرها) ويحفظ المقطع باسم اللعبة والساعة داخل مجلدها الخاص مع تبويبات مرتبة في المعرض.</p>
+          </div>
+          <div class="card">
+            <h3>ضغط للديسكورد تحت 10MB</h3>
+            <p>بضغطة وحدة من الأوفرلي أو المعرض يضغط لك آخر مقطع تحت 10MB وينسخه للحافظة، بس تسوي Ctrl + V بالديسكورد وينرسل على طول بدون Nitro.</p>
+          </div>
+          <div class="card">
+            <h3>مركز زيادة الفريمات وحماية الديسكورد</h3>
+            <p>تنظيف فوري لعمليات الخلفية والرام مع حماية مكالمة الديسكورد، وتحسينات آمنة (Ultimate Performance، فك قفل النوى، تعطيل Game DVR و MPO، وتنظيف الشيدرز) مع تأكيد قبل التنفيذ.</p>
+          </div>
+          <div class="card">
+            <h3>4 أوضاع مظهر + وضع لعب تلقائي</h3>
+            <p>عالي بالمؤثرات، متوسط خفيف، رصاصي للأداء الأقصى، ومخصص تختار فيه لونك وخلفيتك وتطفي أو تشغّل الظلال والأنيميشن، مع وضع لعب تلقائي يرفع أولوية لعبتك أول ما تفتحها.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- تبويب 3: الاختصارات -->
+      <div id="gtab-keys" class="guide-panel">
+        <p style="font-size:13.5px; color:var(--muted); margin-bottom:14px;">
+          هذي الاختصارات الافتراضية وتشتغل حتى داخل اللعبة والنافذة الرئيسية مخفية — وتقدر تغيّر أي زر منها من الإعدادات:
+        </p>
+        <div class="kbd-grid">
+          <div class="kbd-card">
+            <div class="kbd-tag">F8 / Alt+Z</div>
+            <div class="kbd-desc">فتح وإغلاق الأوفرلي</div>
+          </div>
+          <div class="kbd-card">
+            <div class="kbd-tag">Alt + R</div>
+            <div class="kbd-desc">إظهار / إخفاء عدّاد الفريمات</div>
+          </div>
+          <div class="kbd-card">
+            <div class="kbd-tag">F9</div>
+            <div class="kbd-desc">لقطة شاشة + نسخ فوري</div>
+          </div>
+          <div class="kbd-card">
+            <div class="kbd-tag">F10</div>
+            <div class="kbd-desc">بدء / إيقاف تسجيل فيديو</div>
+          </div>
+          <div class="kbd-card">
+            <div class="kbd-tag">F11</div>
+            <div class="kbd-desc">حفظ آخر لقطة بالمدة المحددة</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- تبويب 4: الأسئلة والأمان -->
+      <div id="gtab-faq" class="guide-panel">
+        <div class="faq-list">
+          <div class="faq">
+            <h4>هل التطبيق عليه باند أو مشاكل مع مكافحة الغش؟</h4>
+            <p>لا أبداً، آمن 100%. التطبيق ما يحقن أي ملفات DLL داخل الألعاب ولا يعدّل ملفاتها التنفيذية؛ قراءة الفريمات تتم عبر نظام ويندوز الرسمي (ETW) فقط.</p>
+          </div>
+          <div class="faq">
+            <h4>وش أفضل إعدادات تسجيل لأقل استهلاك وأحلى سلاسة؟</h4>
+            <p>خلّ الفريمات على <strong>60 FPS</strong> والدقة على <strong>الأصلية (GPU صفر تعليق)</strong> والجودة <strong>6 Mbps</strong> والمُرمّز <strong>تلقائي</strong> عشان يشتغل على كرت الشاشة مباشرة بأقل استهلاك.</p>
+          </div>
+          <div class="faq">
+            <h4>هل يحتاج أثبّت .NET أو برامج إضافية؟</h4>
+            <p>لا، ملف الـ EXE شامل كل شيء ويشتغل مباشرة على ويندوز 10 و 11 (64-bit). بس أول مرة تضغط «تثبيت المحرك» داخل التطبيق لو تبي التصوير.</p>
+          </div>
+          <div class="faq">
+            <h4>الحقوق والتراخيص</h4>
+            <p>جميع الحقوق محفوظة © 2026 لـ <strong>مجد (MK442)</strong>. التطبيق مجاني للاستخدام الشخصي، ويُمنع بيعه أو إزالة الحقوق. يستخدم مكتبة NAudio (MIT) و FFmpeg كأداة خارجية.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-footer-cta">
+        <div>
+          <h4 style="font-size:15.5px; font-weight:800;">جاهز تجرّب MK Shadow Optimizer v2.6؟</h4>
+          <p style="font-size:13px; color:var(--muted);">تحميل مباشر ومجاني للويندوز — ملف واحد جاهز للتشغيل.</p>
+        </div>
+        <a class="btn-primary" style="padding:10px 20px; font-size:14px;"
+           href="https://github.com/use-code-mk442/mk-shadow-optimizer/releases/latest/download/MKOptimizerOverlay.exe"
+           onclick="showToast('بدأ تحميل MKOptimizerOverlay.exe!')">
+          تحميل التطبيق الآن
+        </a>
+      </div>
+
+    </section>
+
+    <footer>
+      © 2026 <strong>مجد (Majd / MK442)</strong> — جميع الحقوق محفوظة • كود الشوب: <strong class="mono">MK442</strong>
+    </footer>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    function openView(name) {
+      const home = document.getElementById('view-home');
+      const guide = document.getElementById('view-guide');
+      const navHome = document.getElementById('navHome');
+      const navGuide = document.getElementById('navGuide');
+
+      if (name === 'guide') {
+        home.classList.remove('active');
+        guide.classList.add('active');
+        navHome.classList.remove('active');
+        navGuide.classList.add('active');
+        if (location.hash !== '#guide') history.replaceState(null, '', '#guide');
+      } else {
+        guide.classList.remove('active');
+        home.classList.add('active');
+        navGuide.classList.remove('active');
+        navHome.classList.add('active');
+        if (location.hash === '#guide') history.replaceState(null, '', '#download');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openGuideTab(tabId, btn) {
+      document.querySelectorAll('.guide-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+      const el = document.getElementById('gtab-' + tabId);
+      if (el) el.classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    function setPreviewMode(mode, btn) {
+      const box = document.getElementById('previewBox');
+      box.classList.remove('mode-gray', 'mode-cyan');
+      if (mode === 'gray') box.classList.add('mode-gray');
+      if (mode === 'cyan') box.classList.add('mode-cyan');
+
+      document.querySelectorAll('.mode-group .mode-pill:not(#btnHudDemo)').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    let hudShown = true;
+    function togglePreviewHud() {
+      hudShown = !hudShown;
+      document.getElementById('demoHud').classList.toggle('off', !hudShown);
+      document.getElementById('btnHudDemo').classList.toggle('active', hudShown);
+    }
+
+    let toastTimer;
+    function showToast(msg) {
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+    }
+
+    function copyCode() {
+      const code = 'MK442';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code)
+          .then(() => showToast('تم نسخ كود الشوب MK442 — يعطيك العافية!'))
+          .catch(() => fallbackCopy(code));
+      } else {
+        fallbackCopy(code);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      showToast('تم نسخ كود الشوب MK442 — يعطيك العافية!');
+    }
+
+    if (location.hash === '#guide') openView('guide');
+  </script>
+</body>
+</html>
